@@ -1,0 +1,353 @@
+<!DOCTYPE HTML>
+<!-- 
+ **********************************************************
+
+             TUFTS COMP 150-IDS FINAL PROJECT
+ 
+
+ **********************************************************
+ -->
+
+
+<html>
+<head>
+<meta charset="utf-8"> 
+<title>CCN Reflects the Way How People Would Like to Use Internet Currently</title>
+<link rel="stylesheet" type="text/css" href="http://www.cs.tufts.edu/comp/150IDS/style/homework.css" />
+
+
+
+<style>
+ 
+body{
+	counter-reset: item;
+}
+.bib ul{
+	list-style-type: none;
+}
+.bib ul li:before {
+	counter-increment: item;
+    content: "[" counters(item, " ") "]"; 
+}
+ 
+</style>
+</head>
+
+<body class="homework">
+
+
+<!-- **** -->
+
+
+<div class="student">
+<p>
+<span class="label">Student name: </span>
+Xu Liu
+<br>
+
+<span class="label">LOGIN: </span>
+xliu10
+<br>
+
+<span class="label">E-mail: </span>
+<!-- DON'T FORGET UP UPDATE THE MAILTO: URI BELOW ALONG WITH
+     YOUR EMAIL IN THE ANCHOR.  IT SHOULD LOOK LIKE:
+ <a href="mailto:lady.gaga@cs.tufts.edu">lady.gaga@cs.tufts.edu</a>
+--> 
+
+<a href="mailto:xu.liu@tufts.edu">xu.liu@tufts.edu</a>
+<br>
+</p>
+</div>
+
+
+
+
+
+<div class="UpperLeftHeader">
+<p>Tufts COMP 150-IDS (Spring 2016):
+<br>
+Internet-scale Distributed Systems</p>
+</div>
+
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - -
+		HOMEWORK TITLE
+  - -  - - - - - - - - - - - - - - - - - - - - - - -->
+
+
+<div class="headerdiv">
+<h1>
+CCN Reflects the Way How People Would Like to Use Internet Currently
+</h1>
+</div>
+
+ 
+<div class="main">
+<p>CCN is a new internet architecture promoted by Van Jacobson[1]. After reading
+those materials [2,3,4] and comparing it with our current architecture, I think the most 
+important difference is: under CCN architecture we focus on data without corncern with wherever it is;
+whileas under current architecture we first look for where the data is then touch
+the data. We have some techniques which can hide the extra step of looking for to enable users to focus
+on data without worry about location, for example overlay network.</p>
+<p>Is one extra step big deal? The answer is it depends. If you only very rarely come across a simple scenario
+which need the step, It doesn't matter. However when it comes to internet, which is overwhelingly huge, extremely
+complicated and plays significantly roles in people's life, it realy matters. The reason is, for internet --- 
+such a giant complex infrastructure,
+one more step means huge overhead and inconvenience sometimes even danger.</p>
+<p>In general, I think it is the trend that we eventually will switch to this new architecture. Although current
+architecture may be still useful for some specific application, however, for the most important application --- information delivery
+--- we will use the new architecture. About the time
+frame, It is difficult to predict because it involves many factors. I personally belive in
+that once all technique challenges are resolved and the cost of switch is small enough comparing to its 
+inconvinence, it will happen.</p>
+
+<h3>A Little History Relfecting the Trend</h3>
+<p>
+In the early year when internet just began to expand, the original goal was to
+connect together the original ARPANET with the ARPA packet radio network, in order
+to give users access to the large sevice machines on the ARPANET [5]. In other words,
+out goal is connect to the machine and work on it; data is not under consideration. 
+The TCP/IP protocol works so well for that goal.
+</p>
+<p>
+Later, email appeared [6] which means we were turnning to data; but we still felt
+comfortable with host-to-host style.
+</p>
+<p>
+Later, WWW appeared[6]. We become further caring more about data. If you compare the 
+sturcture of WWW URI with naming system of CCN, you can see they are 
+almost in the same sturcture except there is a host part resolved by DNS in URI. However as
+a user, we don't care how you resolve the host part under the hood; we only care about
+the refered object. In some sence, WWW already has been telling us "What
+we care about is data".
+</p> 
+<p>
+As time flows, people pursuing other way to share data on internet developed
+P2P such as Freenet, Gnutella, Napster, and DHT(Distributed Hash Table) infrastructures.  
+</p>
+<p>
+One common characteristic of P2P and DHT is that they are using overlay network to
+hide the host-to-host details to enable users to focus on data. 
+Nowadays the Internet is the basis for more overlaid networks that can be constructed 
+in order to permit routing of messages to destinations not specified by an IP address [7].
+</p>
+<p>
+Another sign that people are activly looking for a way working around host-to-host style 
+is the emergence of Content Addressable Network, Chord, Pastry, and Tapestry  
+Why did we bother to spend efforts on working around host-to-host style? 
+I guess the reason probably is we have felt that the inconvenience of host-to-host 
+has grown to be a problem.
+</p>
+<p>
+Other problems coming with current architecture also indicate the TCP/IP-based architecture
+doesn't fit well in today's application. For examples, we have to spend lots of efforts
+to enable mobility; to develop CDN to guarrentee avalibiltiy;
+ to consturct PKI system for security.
+</p>
+<p>
+Today's goal is much different from the one at the beginning and the TCP/IP seems no longer
+match demands well. 
+</p>
+
+<h3>How current network architecture works</h3>
+<p>Actual structures of internet are much complicated, here is a brief model.</p>
+<p>
+First, local computational devices such as desktops, laptops, cell phones are phsically 
+connected either with wire or wirelessly through switches, which form a local network; 
+then these local networks are phsically connected across the world through gateways.
+</p>
+<p>
+Second, to locate each device, we need an id for each of them, which is IP address. 
+To enable them to communicate with each other, we need a "language" which is packets. 
+</p>
+<p>
+Third, we need a routing method to find the way between two devices on internet enabling them
+to touch each other indirectly or directly. This is a set of algorithms combining with
+IP address and packets form one of the most important protocol of current 
+architecture --- IP. 
+</p>
+<p>
+Fourth, another most important protocol, TCP, protocol provides a clear interface 
+for upper applications.
+</>
+<p>
+Now we are online, you can talk to anyone as long as you know its IP address or its DNS
+name which can give you the IP address under help of DNS server.
+</p>
+<p>
+Some other protocols or techniques are there making above procedure faster or enabling it to go
+well in some extent  without knowing IP address.
+For examples, CDN and P2P. Some other techniques or protocols make the internet more corlorful 
+such
+as VOIP, Vedio stream. However everything is built on the TCP/IP or similar variants.
+</p>
+<p>
+Gradually I cannot live without internet because I consult everything with some devices on internet. 
+For any problems,
+always some devices has answer there on internet. How come if I don't know either the devices'
+name or its address? Search engines will help me almost completely although not 
+exactly completely; since even search engines cannot extract all information while
+traversing each IP address. What if all search engine fail some day? 
+</p>
+<h3>Problems with toady's architecture</h3>
+<p>Although today's architecuture works well, there are still many problems. For example, it cannot provide
+better abstraction for many applications such as multicast; the BGP is slow to converge and react to failures;
+the addressing method become a problem when hosts move.</p>
+<p>The strategy of overlay network betters the situations in some extent. For example, it provide better abstraction
+by hiding IP layer; it is more reliable by keep multiple path and detect the traffic. </p>
+<p>However there are still some problems
+for overlay network.For example the IP layer architecture limit the best performance of overlay network; additional
+layer make it more likely for some attacks such as man-in-the-middle attacks. </p>
+<h3>How CCN works</h3>
+<p>
+Here is a very brief model. I may misunderstand something. I try to describe
+it as far as I can.
+</p>
+<p>
+First, we still need a physical connection which is similar to current TCP/IP architecture.
+</p>
+<p>
+Second, we still need a id for data but devices; because we don't care on which devices the
+data is. Currently the id will be a heirachical structures of string for people with a binary
+encoding for machine. We still need a "language" which is similar to the packet in IP protocol
+except some changes due to the new naming and security methodology. The new packet contain
+signature, which in some extent takes on the role of PKI.  
+</p>
+<p>
+Third, for routing the path between source and destination, we still need a set of 
+algorithms. The algorithms themselves probably similar to IP protocol, but the
+data structures storing the information for these algorithms dramatically change.
+The changes mainly are due to the new naming methodology. 
+</p>
+<p>
+Other important changes. On one hand there is a security layer which makes the CCN protocol
+inherently safer than TCP/IP architecture; on the other hand there is a strategy layer
+with tasks similar to TCP but much more flexible. By safer, I mean the security will be 
+implemented in content not hosts which reduces the trust we must place in network intermediaries
+, opening the network to wide participations [2]. By more flexible, I mean you can try various
+methods to support reliability and flow control, mobility and connectivity and so on.
+</p>
+<p>
+In addition, I am also confused about what if I don't know exact name of data I want.
+I just guess there may be a matching mechnism built in the protocol, which would eliminate our partial
+need
+for search engine.
+</p>
+<h3>Concerns about CCN</h3>
+<p> Although I personally belive in that it is trent to switch to CCN, there are still many challenges to solve. For examples, how to
+routing with high effeciency, how to cache contents to reduce congestions, how to further enhance security, how to further improve scalability. All of these questions need deep research.</p>
+<h3>Impacts of CCN</h3>
+Following are impacts brought by CCN, I may be wrong about some opinions. Just try my 
+best to understand them.
+<ul>
+    <li>
+    Impacts on WWW
+    <p>I think the CCN is very similar to WWW on naming and retriving informaion. Therefore I don't think current architecture of WWW need significant changes. The main change probably is that we can directly resolve the URI without visiting DNS.</p>
+    </li>
+
+    <li>
+    Impacts on Overlay Network
+    <p>The CCN inherently possesses  characteristics of overlay network while securer. Once CCN is adopted, many applications based on overlay network
+    can easily be adapted to CCN.</p>
+    </li>
+    <li>
+    Impacts on Content Delivery Network
+    <p>The cache in CCN has played similar role to CDN. Maybe CCN can include CDN as its component and distributed it across the network. </p>
+    </li>
+    <li>
+    Impacts on Search Engine
+    <p>CCN should be able to take on simple searching tasks without the need to crawl across the whole internet.</p>
+    </li>
+
+</ul>
+
+<h3>Design Lesson from CCN</h3>
+	<ul>
+		<li>
+		     Naming
+		     <p>As our comp 150IDS told us, naming is so important which determine how you design and
+		     implement the whole system. We can consider URI and hierachical string used in CCN as naming. 
+		     It possesses many advantages: 1> it facilitates lookup costing O(log n);  <br/>2> it dicentralizes
+		     the right of naming; 3> it can be extensible... </p>
+		</li>
+		<li>
+            Module and Layer  
+            <p>To design a complicated system, we must modulize the system and exploit layering to make the design
+            more clear. By modulizing and layering, we focus on one important problem each time, which make implementation
+            and maintenance more effecient. And also they enable us to modify or extend the system without affecting other
+            parts.We can see the good examples from both CCN and TCP/IP architecture layers</p>
+		</li>
+		<li>
+		    Performance
+		    <p>Performance is important to every system. Beyond promoting performance by using advanced technology, great
+		    design is another valuable approach to achieve high performance. In CCN and current architecture, the cache is
+		    here and there. However we must take care about how to achieve coherence  </p>
+		</li>
+		<li>
+		Scalability
+		    <p>The Metcalfe's law tell us that the larger internet will be much more valuable. However, how to guarrentee the network will              work as well as it grows dramatically is a big problem---scalability.
+		    Scalability is especially important to network architecture, which inherently has high requirement on this.
+		       In network architecture design, the designer are doing their best to exploit parallel methods and hierachical
+		       structure to reach high scalability. However the Amdahl's law always constrains the parallel extent.  </p>
+		</li>
+		<li>
+		Security
+		
+		<p>The network architecture didn't consider much security when they were built decades ago, since at that time the network was not
+		very popular. Today when you are designing any system, you have to prepare for attack at the very beginning. The CCN seems more effecient on security than current architecture.
+		</li>
+		<li> Trade-off
+		<p> Any designe has traed-off, just as CCN choses content centric way while current architecture chosen host centric way.
+		</li>
+	</ul>
+
+
+<h3>Wrap ups</h3> 
+<p>Nowday, we more and more prefer a content centric network. However designing a scalable, secure, giant system with high performance raise huge challenges. The new architecuture will take long time to evolve and become perfect. Finally people will get the network work better.</p>
+<div class="section bib">
+	<h2>Bibliography</h2>
+	<ul>
+		<li>
+		    <a href="https://www.youtube.com/watch?v=oCZMoY3q2uM" target="_blank">
+		    Google Tech Talks: A New Way to look at Networking - Van Jackobson Aug 2006
+		    </a>
+		</li>
+		<li>
+	        <a href="https://www.parc.com/content/attachments/networking-named-content-CACM.pdf" target="_blank">
+		    V. Jacobson, D. J. Smetters, J. D. Thornton, M. Plass, N. Briggs and R. Braynard "Networking Named Content"
+		    </a>
+		</li>
+		<li>
+		    <a href="http://en.wikipedia.org/wiki/Content_centric_networking" target="_blank">
+		    Wikipedia "Content Centric Networking"
+		    </a>
+		</li>
+		<li>
+		    <a href="http://ccr.sigcomm.org/online/files/fp177-koponen1.pdf" target="_blank">
+		    Teemu Koponen, Mohit Chawla, Byung-Gon Chun, Andrey Ermolinskiy, Kye Hyun Kim, Scott Shenker, Ion Stoica "A Data-Oriented Network Architecture"
+		    </a>
+		</li>
+	    <li>
+		    <a href="http://ccr.sigcomm.org/archive/1995/jan95/ccr-9501-clark.pdf" target="_blank">
+		    David D. Clark "The Design Philosophy of the DARPA Internet Protocols"
+		    </a>
+		</li>
+	    <li>
+		    <a href="https://en.wikipedia.org/wiki/History_of_the_Internet" target="_blank">
+		    Wikipedia "History of Internet"
+		    </a>
+		</li>
+	    <li>
+		    <a href="https://en.wikipedia.org/wiki/Overlay_network" target="_blank">
+		    Wikipedia "Overlay Network"
+		    </a>
+		</li>
+	    <li>
+		    Jerome H. Saltzer, M. Frans Kaashoek "Principles of Computer System Design: An Introduction", 1st Ed, Morgan Kaufmann, 2009 
+		</li>
+	</ul>
+</div>
+</div>
+</body>
+</html>
