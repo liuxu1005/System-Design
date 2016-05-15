@@ -14,14 +14,10 @@ System design:
     Problems need consideration:
       
       Usage & Constraints
-      
-      Naming
-      
       Bottleneck
-      
       Consistency
-      
       Security
+      Naming
       
     Principles and Experiences:
       KISS
@@ -36,14 +32,10 @@ System design:
       Versioning
       
     Traditional Model & Examples
-      Client/Server
-      MVC
-      RPC
-      Overlay Networks
-      Distributed Hash Table
-      Two phase transaction
-      Stateful/Stateless
-      Text/Binary
+      Client/Server, MVC, RPC, Two phase transaction
+      Stateful/Stateless, Text/Binary
+      Overlay Networks, Distributed Hash Table
+      
       
 
 
