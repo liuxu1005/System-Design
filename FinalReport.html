@@ -13,14 +13,27 @@
 <head>
 <meta charset="utf-8"> 
 <title>CCN Reflects the Way How People Would Like to Use Internet Currently</title>
-<link rel="stylesheet" type="text/css" href="http://www.cs.tufts.edu/comp/150IDS/style/homework.css" />
-
+ 
 
 
 <style>
- 
-body{
+
+body {
+ 	margin-left:auto; 
+ 	margin-right:auto; 
+	max-width:30cm;
+	width:90%;
+	
 	counter-reset: item;
+}
+ 
+
+.headerdiv {
+	clear:both;
+	text-align:center;
+	margin-bottom:2em;
+	margin-right:5%;
+	padding-top:0.5em;
 }
 .bib ul{
 	list-style-type: none;
@@ -33,36 +46,7 @@ body{
 </style>
 </head>
 
-<body class="homework">
-
-
-<!-- **** -->
-
-
-<div class="student">
-<p>
-<span class="label">Student name: </span>
-Xu Liu
-<br>
-
-<span class="label">LOGIN: </span>
-xliu10
-<br>
-
-<span class="label">E-mail: </span>
-<!-- DON'T FORGET UP UPDATE THE MAILTO: URI BELOW ALONG WITH
-     YOUR EMAIL IN THE ANCHOR.  IT SHOULD LOOK LIKE:
- <a href="mailto:lady.gaga@cs.tufts.edu">lady.gaga@cs.tufts.edu</a>
---> 
-
-<a href="mailto:xu.liu@tufts.edu">xu.liu@tufts.edu</a>
-<br>
-</p>
-</div>
-
-
-
-
+<body>
 
 <div class="UpperLeftHeader">
 <p>Tufts COMP 150-IDS (Spring 2016):
@@ -87,14 +71,16 @@ CCN Reflects the Way How People Would Like to Use Internet Currently
 <p>CCN is a new internet architecture promoted by Van Jacobson[1]. After reading
 those materials [2,3,4] and comparing it with our current architecture, I think the most 
 important difference is: under CCN architecture we focus on data without corncern with wherever it is;
-whileas under current architecture we first look for where the data is then touch
+whereas under current architecture we first look for where the data is then touch
 the data. We have some techniques which can hide the extra step of looking for to enable users to focus
 on data without worry about location, for example overlay network.</p>
 <p>Is one extra step big deal? The answer is it depends. If you only very rarely come across a simple scenario
 which need the step, It doesn't matter. However when it comes to internet, which is overwhelingly huge, extremely
 complicated and plays significantly roles in people's life, it realy matters. The reason is, for internet --- 
 such a giant complex infrastructure,
-one more step means huge overhead and inconvenience sometimes even danger.</p>
+one more step means huge overhead and inconvenience sometimes even danger.
+<span style="color:magenta;font-weight:bold">It's important to realize that CCN represents a change to the model of the network, not just the elimination of a step. For example, on the web as we know it the content addressed by a particular URI can change over time, as we see with a weather report for example. In CCN, the data that is addressed directly is immutable... when the content changes, the name changes. Of course, additional layers can be added to give the appearance of the web as we know it, but my point that the change is much more fundamental than eliminating a lookup step.</span>
+</p>
 <p>In general, I think it is the trend that we eventually will switch to this new architecture. Although current
 architecture may be still useful for some specific application, however, for the most important application --- information delivery
 --- we will use the new architecture. About the time
@@ -105,7 +91,7 @@ inconvinence, it will happen.</p>
 <h3>A Little History Relfecting the Trend</h3>
 <p>
 In the early year when internet just began to expand, the original goal was to
-connect together the original ARPANET with the ARPA packet radio network, in order
+connect together the original ARPANET with the ARPA packet radio network, <span style="color:magenta;font-weight:bold">I think you are somewhat overemphasizing the role of the packet radio network at that stage... It is certainly true that the Alohanet packet radio network was very influential, and in particular inspired the design of the ethernet wired network. You're also correct that a primary goal of the ARPANET was resource sharing and remote machine access.</span>in order
 to give users access to the large sevice machines on the ARPANET [5]. In other words,
 out goal is connect to the machine and work on it; data is not under consideration. 
 The TCP/IP protocol works so well for that goal.
@@ -117,7 +103,9 @@ comfortable with host-to-host style.
 <p>
 Later, WWW appeared[6]. We become further caring more about data. If you compare the 
 sturcture of WWW URI with naming system of CCN, you can see they are 
-almost in the same sturcture except there is a host part resolved by DNS in URI. However as
+almost in the same sturcture except there is a host part resolved by DNS in URI. 
+<span style="color:magenta;font-weight:bold">Again, the big difference in CCN as far as I know is that what is named is <em>immutable</em> data; that's very different from what a URI names.</span>
+However as
 a user, we don't care how you resolve the host part under the hood; we only care about
 the refered object. In some sence, WWW already has been telling us "What
 we care about is data".
@@ -167,10 +155,11 @@ to touch each other indirectly or directly. This is a set of algorithms combinin
 IP address and packets form one of the most important protocol of current 
 architecture --- IP. 
 </p>
+<span style="color:magenta;font-weight:bold">The above is a good explanation.</span>
 <p>
-Fourth, another most important protocol, TCP, protocol provides a clear interface 
+Fourth, another most important protocol, TCP, protocol provides a higher-level interface 
 for upper applications.
-</>
+</p>
 <p>
 Now we are online, you can talk to anyone as long as you know its IP address or its DNS
 name which can give you the IP address under help of DNS server.
@@ -202,13 +191,13 @@ layer make it more likely for some attacks such as man-in-the-middle attacks. </
 <h3>How CCN works</h3>
 <p>
 Here is a very brief model. I may misunderstand something. I try to describe
-it as far as I can.
+it as far as I can.  
 </p>
 <p>
 First, we still need a physical connection which is similar to current TCP/IP architecture.
 </p>
 <p>
-Second, we still need a id for data but devices; because we don't care on which devices the
+Second, We still need to identify what were accessing, but with CCN what we identify is data not a device; because we don't care on which devices the
 data is. Currently the id will be a heirachical structures of string for people with a binary
 encoding for machine. We still need a "language" which is similar to the packet in IP protocol
 except some changes due to the new naming and security methodology. The new packet contain
@@ -235,7 +224,7 @@ need
 for search engine.
 </p>
 <h3>Concerns about CCN</h3>
-<p> Although I personally belive in that it is trent to switch to CCN, there are still many challenges to solve. For examples, how to
+<p> Although I personally belive in that it is trend to switch to CCN, there are still many challenges to solve. For examples, how to
 routing with high effeciency, how to cache contents to reduce congestions, how to further enhance security, how to further improve scalability. All of these questions need deep research.</p>
 <h3>Impacts of CCN</h3>
 Following are impacts brought by CCN, I may be wrong about some opinions. Just try my 
@@ -243,7 +232,7 @@ best to understand them.
 <ul>
     <li>
     Impacts on WWW
-    <p>I think the CCN is very similar to WWW on naming and retriving informaion. Therefore I don't think current architecture of WWW need significant changes. The main change probably is that we can directly resolve the URI without visiting DNS.</p>
+    <p>I think the CCN is very similar to WWW on naming and retriving informaion. Therefore I don't think current architecture of WWW need significant changes. The main change probably is that we can directly resolve the URI without visiting DNS. <span style="color:magenta;font-weight:bold">Think about what you would use as the URI for the New York Times' home page, or for a link to the current weather in Boston. How would you do that with a CCN? I think the changes are more complex than you are describing.</span></p>
     </li>
 
     <li>
@@ -257,7 +246,7 @@ best to understand them.
     </li>
     <li>
     Impacts on Search Engine
-    <p>CCN should be able to take on simple searching tasks without the need to crawl across the whole internet.</p>
+    <p>CCN should be able to take on simple searching tasks without the need to crawl across the whole internet. <span style="color:magenta;font-weight:bold">I am not convinced. Think about the service at search engines like Google and Bing provide. They searched the graph of web links retrieving all the content on the web, so that they can answer questions like "Which pages  are useful in finding out Tim Berners-Lee's views on network neutrality." In what ways do CCN allow this to be done without a crawl?</span></p>
     </li>
 
 </ul>
@@ -269,14 +258,14 @@ best to understand them.
 		     <p>As our comp 150IDS told us, naming is so important which determine how you design and
 		     implement the whole system. We can consider URI and hierachical string used in CCN as naming. 
 		     It possesses many advantages: 1> it facilitates lookup costing O(log n);  <br/>2> it dicentralizes
-		     the right of naming; 3> it can be extensible... </p>
+		     the right of naming; 3> it can be extensible... <span style="color:magenta;font-weight:bold">excellent!</span> </p>
 		</li>
 		<li>
             Module and Layer  
-            <p>To design a complicated system, we must modulize the system and exploit layering to make the design
+            <p>To design a complicated system, we must modularize the system and exploit layering to make the design
             more clear. By modulizing and layering, we focus on one important problem each time, which make implementation
             and maintenance more effecient. And also they enable us to modify or extend the system without affecting other
-            parts.We can see the good examples from both CCN and TCP/IP architecture layers</p>
+            parts.We can see the good examples from both CCN and TCP/IP architecture layers <span style="color:magenta;font-weight:bold">Very good!</span></p>
 		</li>
 		<li>
 		    Performance
@@ -289,7 +278,7 @@ best to understand them.
 		    <p>The Metcalfe's law tell us that the larger internet will be much more valuable. However, how to guarrentee the network will              work as well as it grows dramatically is a big problem---scalability.
 		    Scalability is especially important to network architecture, which inherently has high requirement on this.
 		       In network architecture design, the designer are doing their best to exploit parallel methods and hierachical
-		       structure to reach high scalability. However the Amdahl's law always constrains the parallel extent.  </p>
+		       structure to reach high scalability. However the Amdahl's law always constrains the parallel extent.<span style="color:magenta;font-weight:bold">Here I think you could say more about how Metcalfe's law and CCN's are related.</span>  </p>
 		</li>
 		<li>
 		Security
